@@ -24,6 +24,7 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   body {
+    font-family: 'Source Code Pro', sans-serif;
     font-weight: 400;
     color: ${({ theme }) => theme.colors.main};
     background-color: ${({ theme }) => theme.colors.bgDark};
