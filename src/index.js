@@ -10,11 +10,11 @@ import { baseTheme } from "./styled/theme";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <ThemeProvider theme={baseTheme}>
-      <GlobalStyles />
-      <BrowserRouter>
+    <BrowserRouter>
+      <ThemeProvider theme={baseTheme}>
+        <GlobalStyles />
         <App />
-      </BrowserRouter>
-    </ThemeProvider>
+      </ThemeProvider>
+    </BrowserRouter>
   </React.StrictMode>
 );
