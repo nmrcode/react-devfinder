@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { useRootStore } from "../../providers/RootStoreProvider";
 
 export const SWrapper = styled.main`
   display: flex;
