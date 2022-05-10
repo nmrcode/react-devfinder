@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { BiSearchAlt2 } from "react-icons/bi";
 import Button from "../commons/button/Button";
+import { BsSearch } from "react-icons/bs";
 
 const SFormWrapper = styled.form`
   display: flex;
@@ -9,6 +9,11 @@ const SFormWrapper = styled.form`
   background-color: ${({ theme }) => theme.colors.bgLight};
   padding: 10px 10px 10px 20px;
   border-radius: ${({ theme }) => theme.shape.radii};
+  margin-bottom: 20px;
+
+  svg {
+    color: ${({ theme }) => theme.colors.accent};
+  }
 `;
 
 const SInput = styled.input`
@@ -19,7 +24,7 @@ const SInput = styled.input`
   color: ${({ theme }) => theme.colors.main};
   font-size: 21px;
   line-height: 1;
-  margin: 0 15px;
+  margin: 0 20px;
 
   &::placeholder {
     color: ${({ theme }) => theme.colors.secondary};
@@ -29,7 +34,7 @@ const SInput = styled.input`
 const SearchForm = () => {
   return (
     <SFormWrapper>
-      <BiSearchAlt2 size={"30px"} />
+      <BsSearch size={"30px"} />
       <SInput
         type={"text"}
         name={"username"}
