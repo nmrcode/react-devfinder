@@ -17,12 +17,6 @@ export const GlobalStyles = createGlobalStyle`
     height: auto;
   }
 
-  button {
-    color: inherit;
-    cursor: pointer;
-    font-family: inherit
-  }
-
   body {
     font-family: 'Source Code Pro', sans-serif;
     font-weight: 400;

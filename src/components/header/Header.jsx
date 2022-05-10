@@ -6,11 +6,15 @@ const SHeader = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  margin-bottom: 10px;
+  padding: 10px 0;
   width: 100%;
 `;
 
 const SLogo = styled.div`
   font-weight: 700;
+  font-size: 24px;
 `;
 
 const Header = () => {
