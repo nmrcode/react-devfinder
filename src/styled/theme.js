@@ -19,3 +19,14 @@ export const baseTheme = {
     xxl: "max-width: 1400px",
   },
 };
+
+export const darkTheme = {
+  ...baseTheme,
+  colors: {
+    main: "#030409",
+    secondary: "rgba(3,4,9,0.64)",
+    accent: "#0178FF",
+    bgDark: "#F5F8FF",
+    bgLight: "#FEFEFE",
+  },
+};

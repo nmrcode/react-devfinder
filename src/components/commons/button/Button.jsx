@@ -8,7 +8,7 @@ const SButton = styled.button`
 
   padding: 15px 22px;
 
-  color: inherit;
+  color: #fff;
   font-family: inherit;
 
   cursor: pointer;

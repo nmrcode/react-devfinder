@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
+import { observer } from "mobx-react";
+import { useRootStore } from "../../providers/RootStoreProvider";
 
 const transition = {
   type: "spring",
@@ -19,15 +21,15 @@ const SWrapper = styled.div`
   }
 `;
 
-const ThemeSwitcher = () => {
-  const [isOn, setIsOn] = useState(false);
+const ThemeSwitcher = observer(() => {
+  const { themeStore } = useRootStore();
 
   return (
-    <SWrapper onClick={() => setIsOn(!isOn)}>
-      {isOn ? <MoonIcon /> : <SunIcon />}
+    <SWrapper onClick={() => themeStore.switchTheme()}>
+      {themeStore.theme == "base" ? <SunIcon /> : <MoonIcon />}
     </SWrapper>
   );
-};
+});
 
 const MoonIcon = () => {
   const variants = {
