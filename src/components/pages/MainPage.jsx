@@ -1,14 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import SearchForm from "../search-form/SearchForm";
 import ProfileCard from "../profile-card/ProfileCard";
+import { observer } from "mobx-react";
+import { useRootStore } from "../../providers/RootStoreProvider";
 
-const MainPage = () => {
+const MainPage = observer(() => {
+  const { profileStore } = useRootStore();
   return (
     <>
       <SearchForm />
-      <ProfileCard />
+      {profileStore.profile.length ? <ProfileCard /> : null}
     </>
   );
-};
+});
 
 export default MainPage;

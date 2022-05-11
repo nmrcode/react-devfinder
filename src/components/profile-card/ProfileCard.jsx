@@ -1,10 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 import { GoLocation } from "react-icons/go";
-import { AiOutlineLink } from "react-icons/ai";
 import { FiTwitter } from "react-icons/fi";
+import { observer } from "mobx-react";
+import { useRootStore } from "../../providers/RootStoreProvider";
+import { motion } from "framer-motion";
+import { AiOutlineMail } from "react-icons/ai";
 
-const SCardWrapper = styled.article`
+const SCardWrapper = styled(motion.article)`
   display: grid;
   grid-template-areas:
     "avatar info"
@@ -41,6 +44,8 @@ const SInfoWrapper = styled.div`
 `;
 
 const SNames = styled.div`
+  margin-right: 10px;
+
   h3 {
     font-size: 32px;
     font-weight: 700;
@@ -53,15 +58,17 @@ const SNames = styled.div`
 `;
 
 const SJoined = styled.div`
+  text-align: center;
   font-weight: 400;
   font-size: 14px;
   color: ${({ theme }) => theme.colors.secondary};
   line-height: 1.5;
+  white-space: nowrap;
 `;
 
 const SDescrWrapper = styled.div`
   grid-area: descr;
-  margin-bottom: 15px;
+  margin-bottom: 25px;
 `;
 
 const SStatWrapper = styled.div`
@@ -97,7 +104,8 @@ const SLinksWrapper = styled.div`
 
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
+  row-gap: 25px;
+  column-gap: 10px;
   justify-content: space-between;
 `;
 
@@ -120,48 +128,72 @@ const StatItem = ({ text, count }) => (
   </SStatItem>
 );
 
-const ProfileCard = () => {
+const ProfileCard = observer(() => {
+  const { profileStore } = useRootStore();
+  const {
+    avatar_url,
+    followers,
+    following,
+    login,
+    name,
+    html_url,
+    location,
+    twitter_username,
+    bio,
+    email,
+    created_at,
+  } = profileStore.profile[0];
+
   return (
-    <SCardWrapper>
+    <SCardWrapper
+      initial={{ y: "100%", opacity: 0 }}
+      animate={{ y: "0", opacity: 1 }}
+    >
       <SAvatarWrapper>
-        <SAvatar src={"http://placekitten.com/1000/1000"} />
+        <SAvatar src={avatar_url} />
       </SAvatarWrapper>
       <SInfoWrapper>
         <SNames>
-          <h3>nmrspb</h3>
-          <a href={"/"}>@nikmur</a>
+          <h3>{name}</h3>
+          <a href={html_url} target={"_blank"}>
+            @{login}
+          </a>
         </SNames>
-        <SJoined>Зарегистрирован с 25 янв 2019г</SJoined>
+        <SJoined>
+          <div>Дата регистрации</div>
+          {new Date(created_at).toLocaleDateString()}
+        </SJoined>
       </SInfoWrapper>
       <SDescrWrapper>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam
-        aliquid assumenda beatae dolore, doloribus error, fugit id impedit
-        inventore magnam magni minima minus neque non perspiciatis quae quasi
-        quidem quo rem sed sit soluta, suscipit totam unde veritatis!
-        Asperiores, aut est fuga libero maiores maxime quia reiciendis rerum
-        vitae voluptatibus!
+        {bio ? bio : "У этого профиля нет описания "}
       </SDescrWrapper>
       <SStatWrapper>
         <StatItem text={"Repos"} count={"8"} />
-        <StatItem text={"Followers"} count={"8"} />
-        <StatItem text={"Following"} count={"8"} />
+        <StatItem text={"Followers"} count={followers} />
+        <StatItem text={"Following"} count={following} />
       </SStatWrapper>
       <SLinksWrapper>
-        <SLinkItem>
-          <GoLocation />
-          <span>123</span>
-        </SLinkItem>
-        <SLinkItem>
-          <AiOutlineLink />
-          <span>123</span>
-        </SLinkItem>
-        <SLinkItem>
-          <FiTwitter />
-          <span>123</span>
-        </SLinkItem>
+        {location ? (
+          <SLinkItem>
+            <GoLocation />
+            <span>{location}</span>
+          </SLinkItem>
+        ) : null}
+        {twitter_username ? (
+          <SLinkItem>
+            <FiTwitter />
+            <span>{twitter_username}</span>
+          </SLinkItem>
+        ) : null}
+        {email ? (
+          <SLinkItem>
+            <AiOutlineMail />
+            <span>{email}</span>
+          </SLinkItem>
+        ) : null}
       </SLinksWrapper>
     </SCardWrapper>
   );
-};
+});
 
 export default ProfileCard;

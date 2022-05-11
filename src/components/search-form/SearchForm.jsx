@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Button from "../commons/button/Button";
 import { BsSearch } from "react-icons/bs";
+import { values } from "mobx";
+import { observer } from "mobx-react";
+import { useRootStore } from "../../providers/RootStoreProvider";
 
 const SFormWrapper = styled.form`
   display: flex;
@@ -31,18 +34,34 @@ const SInput = styled.input`
   }
 `;
 
-const SearchForm = () => {
+const SearchForm = observer(() => {
+  const [searchValue, setSearchValue] = useState("");
+
+  const { profileStore } = useRootStore();
+
+  const handleOnChange = (text) => {
+    setSearchValue(text);
+  };
+
+  const handleOnSubmit = (e) => {
+    e.preventDefault();
+    profileStore.searchProfileByName(searchValue);
+    setSearchValue("");
+  };
+
   return (
-    <SFormWrapper>
+    <SFormWrapper onSubmit={(e) => handleOnSubmit(e)}>
       <BsSearch size={"30px"} />
       <SInput
         type={"text"}
         name={"username"}
+        value={searchValue}
+        onChange={(e) => handleOnChange(e.target.value)}
         placeholder={"Введите никнейм разработчика"}
       />
-      <Button>Найти</Button>
+      <Button type={"submit"}>Найти</Button>
     </SFormWrapper>
   );
-};
+});
 
 export default SearchForm;
