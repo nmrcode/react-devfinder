@@ -13,6 +13,18 @@ export const SCardWrapper = styled(motion.article)`
   background-color: ${({ theme }) => theme.colors.bgLight};
   border-radius: ${({ theme }) => theme.shape.radii};
   padding: 50px 30px;
+
+  @media (${({ theme }) => theme.maxMedia.md}) {
+    grid-template-areas:
+      "avatar"
+      "info"
+      "descr"
+      "stat"
+      "links";
+    grid-template-columns: 1fr;
+
+    padding: 20px 15px;
+  }
 `;
 
 export const SAvatarWrapper = styled.div`
@@ -23,6 +35,10 @@ export const SAvatarWrapper = styled.div`
   height: 200px;
   overflow: hidden;
   border-radius: 50%;
+
+  @media (${({ theme }) => theme.maxMedia.md}) {
+    margin-bottom: 20px;
+  }
 `;
 
 export const SAvatar = styled.img`
@@ -35,6 +51,13 @@ export const SInfoWrapper = styled.div`
   align-items: flex-start;
   justify-content: space-between;
   margin-bottom: 15px;
+
+  @media (${({ theme }) => theme.maxMedia.md}) {
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+  }
 `;
 
 export const SNames = styled.div`
@@ -44,6 +67,10 @@ export const SNames = styled.div`
     font-size: 32px;
     font-weight: 700;
     margin-bottom: 5px;
+
+    @media (${({ theme }) => theme.maxMedia.md}) {
+      font-size: 24px;
+    }
   }
 
   a {
@@ -62,11 +89,20 @@ export const SJoined = styled.div`
   color: ${({ theme }) => theme.colors.secondary};
   line-height: 1.5;
   white-space: nowrap;
+  @media (${({ theme }) => theme.maxMedia.md}) {
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+  }
 `;
 
 export const SDescrWrapper = styled.div`
   grid-area: descr;
   margin-bottom: 25px;
+
+  @media (${({ theme }) => theme.maxMedia.md}) {
+    font-size: 14px;
+  }
 `;
 
 export const SStatWrapper = styled.div`
@@ -84,6 +120,11 @@ export const SStatWrapper = styled.div`
 
   padding: 15px 20px;
   margin-bottom: 15px;
+
+  @media (${({ theme }) => theme.maxMedia.md}) {
+    grid-template-columns: 1fr;
+    row-gap: 20px;
+  }
 `;
 
 export const SLinksWrapper = styled.div`
@@ -94,6 +135,11 @@ export const SLinksWrapper = styled.div`
   row-gap: 25px;
   column-gap: 10px;
   justify-content: space-between;
+
+  @media (${({ theme }) => theme.maxMedia.md}) {
+    grid-template-columns: 1fr;
+    row-gap: 20px;
+  }
 `;
 
 export const SLinkItem = styled.a`
@@ -105,6 +151,10 @@ export const SLinkItem = styled.a`
   svg {
     font-size: 24px;
     margin-right: 20px;
+  }
+
+  @media (${({ theme }) => theme.maxMedia.md}) {
+    font-size: 14px;
   }
 `;
 

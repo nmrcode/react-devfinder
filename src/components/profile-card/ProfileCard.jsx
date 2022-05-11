@@ -44,7 +44,7 @@ const ProfileCard = observer(() => {
       </SAvatarWrapper>
       <SInfoWrapper>
         <SNames>
-          <h3>{name}</h3>
+          {name && <h3>{name}</h3>}
           <a href={html_url} target="_blank" rel={"noreferrer"}>
             @{login}
           </a>
@@ -63,24 +63,24 @@ const ProfileCard = observer(() => {
         <StatItem text={"Following"} count={following} />
       </SStatWrapper>
       <SLinksWrapper>
-        {location ? (
+        {location && (
           <SLinkItem>
             <GoLocation />
             <span>{location}</span>
           </SLinkItem>
-        ) : null}
-        {twitter_username ? (
+        )}
+        {twitter_username && (
           <SLinkItem>
             <FiTwitter />
             <span>{twitter_username}</span>
           </SLinkItem>
-        ) : null}
-        {email ? (
+        )}
+        {email && (
           <SLinkItem>
             <AiOutlineMail />
             <span>{email}</span>
           </SLinkItem>
-        ) : null}
+        )}
       </SLinksWrapper>
     </SCardWrapper>
   );

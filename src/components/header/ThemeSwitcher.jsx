@@ -12,6 +12,10 @@ const SWrapper = styled.div`
   svg {
     cursor: pointer;
     font-size: 40px;
+
+    @media (${({ theme }) => theme.maxMedia.sm}) {
+      font-size: 24px;
+    }
   }
 `;
 

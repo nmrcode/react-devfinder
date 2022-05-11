@@ -15,6 +15,20 @@ const SFormWrapper = styled.form`
 
   svg {
     color: ${({ theme }) => theme.colors.accent};
+
+    @media (${({ theme }) => theme.maxMedia.md}) {
+      display: none;
+    }
+  }
+
+  button {
+    @media (${({ theme }) => theme.maxMedia.md}) {
+      display: none;
+    }
+  }
+
+  @media (${({ theme }) => theme.maxMedia.md}) {
+    padding: 20px 10px;
   }
 `;
 
@@ -30,6 +44,11 @@ const SInput = styled.input`
 
   &::placeholder {
     color: ${({ theme }) => theme.colors.secondary};
+  }
+
+  @media (${({ theme }) => theme.maxMedia.md}) {
+    font-size: 14px;
+    margin: 0;
   }
 `;
 
