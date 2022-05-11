@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import Button from "../commons/button/Button";
 import { BsSearch } from "react-icons/bs";
-import { values } from "mobx";
 import { observer } from "mobx-react";
 import { useRootStore } from "../../providers/RootStoreProvider";
 
@@ -58,6 +57,7 @@ const SearchForm = observer(() => {
         value={searchValue}
         onChange={(e) => handleOnChange(e.target.value)}
         placeholder={"Введите никнейм разработчика"}
+        autoComplete="off"
       />
       <Button type={"submit"}>Найти</Button>
     </SFormWrapper>
